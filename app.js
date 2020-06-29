@@ -9,7 +9,9 @@ const port = process.env.PORT || 3001;
 app.use(bodyParser.json());
 
 const { authenticateToken } = require("./services/authenticationToken");
+const { checkToken } = require("./services/checkToken");
 
+app.get("/checkToken", checkToken);
 app.use("/users", require("./routes/auth"));
 app.use("/invoices", authenticateToken, require("./routes/invoices"));
 
